@@ -27,17 +27,6 @@ public class Main {
         StringBuilder singleBuilder = new StringBuilder();
         StringBuffer singleBuffer = new StringBuffer();
 
-        /** MULTI-THREAD BUILDER **/
-        long timerBuilder = System.nanoTime();
-        for(int i = 0 ; i < LOOP_SIZE ; i++){
-            builderExecutorService.submit(new StringBuilderThread(builder));
-        }
-
-        builderExecutorService.shutdown();
-        builderExecutorService.awaitTermination(10, TimeUnit.MINUTES);
-        timerBuilder = (System.nanoTime() - timerBuilder);
-        System.out.println("PROCESSED MULTI THREAD BUILDER");
-
         /** MULTI-THREAD BUFFER **/
         long timerBuffer = System.nanoTime();
         for(int i = 0 ; i < LOOP_SIZE ; i++){
@@ -48,6 +37,18 @@ public class Main {
         bufferExecutorService.awaitTermination(10, TimeUnit.MINUTES);
         timerBuffer = (System.nanoTime() - timerBuffer);
         System.out.println("PROCESSED MULTI THREAD BUFFER");
+
+
+        /** MULTI-THREAD BUILDER **/
+        long timerBuilder = System.nanoTime();
+        for(int i = 0 ; i < LOOP_SIZE ; i++){
+            builderExecutorService.submit(new StringBuilderThread(builder));
+        }
+
+        builderExecutorService.shutdown();
+        builderExecutorService.awaitTermination(10, TimeUnit.MINUTES);
+        timerBuilder = (System.nanoTime() - timerBuilder);
+        System.out.println("PROCESSED MULTI THREAD BUILDER");
 
 
         /** SINGLE-THREAD BUILDER **/
