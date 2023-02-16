@@ -33,14 +33,14 @@ Average time:
 
 Reliability:
 >(MULTI THREAD) Builder has repeated or invalid number stored? true  
-(MULTI THREAD) Buffer has repeated or invalid number stored? true  
+(MULTI THREAD) Buffer has repeated or invalid number stored? false  
 (SINGLE THREAD) Builder has repeated or invalid number stored? false  
 (SINGLE THREAD) Buffer has repeated or invalid number stored? false  
 
 __Note: these values change from each iteration__
 
 
-Although the example isn't the best to show the true power of multithreading, we can still retrieve some very imporant conclusions from the example. Although these values can fluctuate slightly between iterations of the example, a few things are constant:
+Although the example isn't the best to show the true power of multithreading or it's downsides since the average runtime of the syncronized method is very low, we can still retrieve some very imporant conclusions from the example. Although these values can fluctuate slightly between iterations of the example, a few things are constant:
 
 * With a single thread there is little to no difference in the time it takes both classes to execute all appends
 * With multiple threads StringBuilder is not reliable at all
@@ -48,3 +48,11 @@ Although the example isn't the best to show the true power of multithreading, we
 
 This happens because in a single thread it doesn't really matter if a method is tread safe or not, because everything runs in a synchronous fashion no synchronized method will ever be locked. When multiple threads are trying to access the same method, some will have to wait until the first to access it frees the lock, this waiting time doesn't exist when the method is not synchronized, therefore it generally takes less time to compute.
 Although synchronization comes at a perfomance cost it can fix realiability issues related to multithreading.
+
+
+### How to use threads in Java
+
+In Java a class is a thread if it implements the interface [Runnable](https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html), which enforces the implementation of the method [run()](https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html#run()), there is a [Thread](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html) that we can also extend that implements this interface and also a bunch of useful methods.
+
+![This is an image](https://www.baeldung.com/wp-content/uploads/2018/02/Life_cycle_of_a_Thread_in_Java.jpg)
+<sub>[source]</sub>
