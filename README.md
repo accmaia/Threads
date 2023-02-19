@@ -33,10 +33,34 @@ It's reliable with synchronization: false
 
 It's possible to observe a few things with this example, we are using synchronization to make the append method more reliable by sacrificing perfomance. This happens because when multiple threads are trying to access the same method, some will have to wait until the first to access it frees the "lock", this waiting time doesn't exist when the method is not synchronized, therefore it generally takes less time to compute.
 
-Before understanding how to implement threads in Java, it's importante to understand the states a thread may be in, in other words it's lifecycle.
+To implement threads in Java, it's also importante to understand the states a thread may be in, in other words it's lifecycle.
 
 #### Here is a visual representation of a thread's lifecycle:
 
 
-![This is an image](https://www.baeldung.com/wp-content/uploads/2018/02/Life_cycle_of_a_Thread_in_Java.jpg)
-<sub>[source]</sub>
+![Thread lifecycle](https://www.baeldung.com/wp-content/uploads/2018/02/Life_cycle_of_a_Thread_in_Java.jpg)
+[[Source]](https://www.baeldung.com/java-thread-lifecycle)
+
+In Java for a class to be a thread it must implement the interface [Runnable](https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html), a developer might also choose to extend the class [Thread](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html) which itself implements [Runnable](https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html). While [Runnable](https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html) is a [Functional Interface](https://docs.oracle.com/javase/8/docs/api/index.html?java/lang/FunctionalInterface.html), [Thread](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html) provides the developer with a lot of extra tools to handle threads. Hence the difference between Runnable and Non-Runnable.
+
+When a [Thread](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html) is inquisited on it's state it may present one of the following [Thread States](https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.State.html):  
+* NEW  
+<sub>A thread that has not yet started is in this state.<sub/>  
+  
+* RUNNABLE  
+<sub>A thread executing in the Java virtual machine is in this state.<sub/>  
+  
+* BLOCKED  
+<sub>A thread that is blocked waiting for a monitor lock is in this state.<sub/>  
+  
+* WAITING  
+<sub>A thread that is waiting indefinitely for another thread to perform a particular action is in this state.<sub/>  
+  
+* TIMED_WAITING  
+<sub>A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.<sub/>  
+  
+* TERMINATED  
+<sub>A thread that has exited is in this state.<sub/>  
+  
+### NEW
+A thread has been instantiatied but is yet to start running. 
