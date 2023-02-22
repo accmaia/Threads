@@ -28,8 +28,8 @@ Average time:
 >Synchronization is 7x slower than without synchronization  
 
 Reliability:
->It's reliable without synchronization: true  
-It's reliable with synchronization: false
+>It's reliable without synchronization: false  
+It's reliable with synchronization: true
 
 It's possible to observe a few things with this example, we are using synchronization to make the append method more reliable by sacrificing perfomance. This happens because when multiple threads are trying to access the same method, some will have to wait until the first to access it frees the "lock", this waiting time doesn't exist when the method is not synchronized, therefore it generally takes less time to compute.
 
