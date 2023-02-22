@@ -16,7 +16,7 @@ Every option in the table of contents will have a corresponding folder in the /s
 Threads allows the execution of multiple blocks of code in an asynchronous way, this makes it so that we can use our resources more efficiently, allowing us to meaximize performance. This doesn't come without downside, it's important to make sure if a shared resource needs to be thread safe which likely comes with a loss in performance. A perfect example is [StringBuilder](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html) vs [StringBuffer](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html), where the former is thread safe but often replaced by the [StringBuilder](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html) with one of the reasons being the synchronized methods in the [StringBuffer](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html) have a significantly greater cost in terms of effiency.
 
 In the [example 1](https://github.com/accmaia/Threads/tree/master/src/fundamentals/examples/one), I will simulate a very slow append, where [Resource](https://github.com/accmaia/Threads/blob/master/src/fundamentals/examples/one/Resource.java) acts like a StringBuilder and [SynchronizedResource](https://github.com/accmaia/Threads/blob/master/src/fundamentals/examples/one/SynchronizedResource.java) like StringBuffer. The two classes both have a method .execute() which appends a String to a static variable, besides the append they both wait half a second to simulate a more demanding process in terms of processing time.  
-The static variable should look: "1;2;3;4;5;...;n+1;" when LOOP_SIZE = 100
+The static variable should look: "1;2;3;4;5;...;n+1;" when LOOP_SIZE = n
 
 **Output**
 
